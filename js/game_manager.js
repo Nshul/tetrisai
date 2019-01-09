@@ -10,12 +10,12 @@ function GameManager(){
 
     var grid = new Grid(22, 10);
     var rpg = new RandomPieceGenerator();
-    var ai = new AI(0.510066, 0.760666, 0.35663, 0.184483);
+    var ai = new AI(2, 3, 4, 3);
     var workingPieces = [null, rpg.nextPiece()];
     var workingPiece = null;
-    var isAiActive = true;
+    var isAiActive = false;
     var isKeyEnabled = false;
-    var gravityTimer = new Timer(onGravityTimerTick, 500);
+    // var gravityTimer = new Timer(onGravityTimerTick, 500);
     var score = 0;
 
     // Graphics
@@ -140,7 +140,7 @@ function GameManager(){
             })
         }else{
             isKeyEnabled = true;
-            gravityTimer.resetForward(500);
+            // gravityTimer.resetForward(500);
         }
     }
 
@@ -192,7 +192,7 @@ function GameManager(){
         switch(event.which){
             case 32: // spacebar
                 isKeyEnabled = false;
-                gravityTimer.stop(); // Stop gravity
+                // gravityTimer.stop(); // Stop gravity
                 startWorkingPieceDropAnimation(function(){ // Start drop animation
                     while(workingPiece.moveDown(grid)); // Drop working piece
                     if(!endTurn()){
@@ -203,7 +203,7 @@ function GameManager(){
                 });
                 break;
             case 40: // down
-                gravityTimer.resetForward(500);
+                // gravityTimer.resetForward(500);
                 break;
             case 37: //left
                 if(workingPiece.canMoveLeft(grid)){
@@ -233,7 +233,7 @@ function GameManager(){
             aiButton.style.backgroundColor = "#e9e9ff";
 
             isKeyEnabled = false;
-            gravityTimer.stop();
+            // gravityTimer.stop();
             startWorkingPieceDropAnimation(function(){ // Start drop animation
                 while(workingPiece.moveDown(grid)); // Drop working piece
                 if(!endTurn()){
@@ -246,7 +246,7 @@ function GameManager(){
     }
 
     resetButton.onclick = function(){
-        gravityTimer.stop();
+        // gravityTimer.stop();
         cancelWorkingPieceDropAnimation();
         grid = new Grid(22, 10);
         rpg = new RandomPieceGenerator();
