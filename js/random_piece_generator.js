@@ -15,10 +15,8 @@ RandomPieceGenerator.prototype.nextPiece = function(){
 };
 
 RandomPieceGenerator.prototype.shuffleBag = function() {
-    var currentIndex = this.bag.length
-        , temporaryValue
-        , randomIndex
-        ;
+    // This is Fisher-Yates(Knuth) shuffle
+    var currentIndex = this.bag.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
